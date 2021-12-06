@@ -19,4 +19,4 @@ NEXT_PUBLIC_OPEN_WEATHER_API=https://api.openweathermap.org/data/2.5/onecall
   yarn install
   yarn dev
   ```
-The project was deployed, and you can take a look at this [link](https://reservamos.vercel.app/)
+The project was deployed on Verce, and you can try it at this [link](https://reservamos.vercel.app/)
