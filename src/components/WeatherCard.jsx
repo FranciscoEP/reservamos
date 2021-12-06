@@ -27,7 +27,7 @@ export const WeatherCard = ({ dt, min, max, code, idx, description }) => {
             rounded="full"
           >
             {new Date(dt * 1000)
-              .toLocaleString('es-ES', {
+              .toLocaleString('en-US', {
                 weekday: 'long',
               })
               .toUpperCase()}
@@ -72,7 +72,7 @@ export const WeatherCard = ({ dt, min, max, code, idx, description }) => {
           </Stack>
           <Stack direction="row" align="center" justify="center">
             <Text fontSize="3xl" color="gray.500">
-              Máx.
+              Max.
             </Text>
 
             <Text fontSize="6xl" fontWeight={800} color="#fff">

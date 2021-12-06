@@ -18,7 +18,7 @@ export const Autocomplete = ({ options, setState }) => (
         aria-label="Search the weather in a city located in US or Mexico."
       />
       <AutoCompleteList>
-        {options.map((ele, idx) => (
+        {options?.map((ele, idx) => (
           <AutoCompleteItem
             key={`option-${idx}`}
             value={ele.display}
