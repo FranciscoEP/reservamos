@@ -5,7 +5,6 @@ export const OPEN_WEATHER_TOKEN = process.env.NEXT_PUBLIC_OPEN_WEATHER_TOKEN;
 export const OPEN_WEATHER_API = process.env.NEXT_PUBLIC_OPEN_WEATHER_API;
 export const parts = ['minutely', 'hourly'];
 export const getIcon = (code) => {
-  console.log(code);
   if (code >= 200 && code < 300) {
     return SkyconsType.RAIN;
   }
