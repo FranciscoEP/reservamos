@@ -77,7 +77,7 @@ export default function Home() {
         {!_.isEmpty(weatherData) && (
           <Box mx="5rem" my="1rem">
             <Heading color="#fff" my="2rem">
-              {city} weather forecast for this week:
+              {city}'s weather forecast for this week:
             </Heading>
             <WeatherLayout>
               {weatherData?.daily.slice(0, 7).map((ele, idx) => (
