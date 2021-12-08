@@ -1,8 +1,25 @@
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
 import { Input, Box, Text } from '@chakra-ui/react';
+import { BACKEND_API } from '../utils/constants';
 
-export const Autocomplete = ({ options, setState }) => {
+export const Autocomplete = ({ options, setState, setOptions }) => {
+  const [match, setMatch] = useState('');
+  const filteredCities = (citiesArr) =>
+    citiesArr.filter((ele) => ele.result_type === 'city');
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await fetch(`${BACKEND_API}?q=${match}`);
+        const json = await response.json();
+        const filteredData = filteredCities(json);
+
+        setOptions(filteredData);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [match, setOptions]);
+
   const [suggestions, setSuggestions] = useState([]);
   const onChangeHandler = (text) => {
     let matches = [];
@@ -10,14 +27,15 @@ export const Autocomplete = ({ options, setState }) => {
       const regex = text
         .toLowerCase()
         .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '');
-      console.log(regex);
+        .replace(/[\u0300-\u036f]/gi, '');
+
       matches = options.filter((ele) =>
-        ele.city_slug.toLowerCase().match(regex)
+        ele.city_ascii_name.toLowerCase().match(regex)
       );
     }
     setSuggestions(matches);
-    setState(text);
+    // setState(text);
+    setMatch(text);
   };
 
   const onSuggestionHandler = (text) => {
@@ -25,7 +43,6 @@ export const Autocomplete = ({ options, setState }) => {
     setSuggestions([]);
   };
 
-  console.log(suggestions);
   return (
     <Box w={['100%', '30rem']} mx={['1rem', 'auto']} borderRadius="4px">
       <Input
@@ -43,7 +60,7 @@ export const Autocomplete = ({ options, setState }) => {
       />
       {suggestions && (
         <Box my="1rem" borderRadius="4px">
-          {suggestions.slice(0, 10).map(({ display }, idx) => (
+          {suggestions.slice(0, 5).map(({ display }, idx) => (
             <Box
               onClick={() => onSuggestionHandler(display)}
               key={idx}
