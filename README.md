@@ -3,7 +3,7 @@
 This project uses the following technologies:
 
 - Package manager: Yarn
-- Development framework: Next js
+- Development framework:js Next
 - Component library: Chakra UI
 ## How to run this app
 

@@ -3,8 +3,17 @@ import AnimatedNumber from 'animated-number-react';
 import Skycons from 'react-skycons';
 import { getIcon } from '../utils/constants';
 
-export const WeatherCard = ({ dt, min, max, code, idx, description }) => {
+export const WeatherCard = ({
+  dt,
+  min,
+  max,
+  maxTemper,
+  code,
+  idx,
+  description,
+}) => {
   const formatValue = (value) => `${Math.floor(Number(value).toFixed(2))}`;
+
   return (
     <Center my="1rem" key={idx}>
       <Box
@@ -15,6 +24,7 @@ export const WeatherCard = ({ dt, min, max, code, idx, description }) => {
         rounded="md"
         overflow="hidden"
         shadow="xl"
+        border={max === maxTemper ? '1px solid red' : 'none'}
       >
         <Stack textAlign="center" p={6} color="gray.800" align="center">
           <Text
